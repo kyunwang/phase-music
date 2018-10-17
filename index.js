@@ -9,8 +9,10 @@ fetch('./itsgonnarain.mp3')
 	.then(arrBuffer => audioContext.decodeAudioData(arrBuffer))
 	.then(audioBuffer => {
 		console.log('Got audio: ', audioBuffer);
+		// Reads audiobuffer data and streams to other nodes
 		let sourceNode = audioContext.createBufferSource();
 		sourceNode.buffer = audioBuffer;
+		sourceNode.loop = true;
 		sourceNode.connect(audioContext.destination);
 		sourceNode.start();
 	})
